@@ -1,4 +1,8 @@
-<p><a href="https://rssaketh.github.io/project_pages/obj_disc_new.html#workshop_challenge" target="_blank">Open World Vision</a> emphasizes the complexity of the real open world where we finally deploy computer vision algorithms. This year, to facilitate discussions among researchers from different backgrounds, we host a teaser challenge in the context of image classification, which studies a classifier’s robustness to novel inputs and self-awareness of unknowns. We refer participants to the <a href="https://docs.google.com/document/d/19kfy77P6ahWRmDKq27hz_MxfJOTEe-d3cQkODGn8bVE/edit?usp=sharing" target="_blank">user guide</a> for details</p>.
+<p><a href="https://rssaketh.github.io/project_pages/obj_disc_new.html#workshop_challenge" target="_blank">Object discovery </a>is the task of automatically identifying and
+    grouping semantically coherent objects without human intervention. Discovery algorithms typically address several challenges like novelty detection, open world recognition
+    and clustering, capabilities which are essential for systems deployed in-the-wild. This year, to facilitate discussions among researchers who have different backgrounds,
+    we host a teaser challenge which studies a system’s capabilities to discover and group novel object categories in a large unlabeled dataset.
+</p>.
 
 <h4>Important Dates</h4>
 <ul>
@@ -24,12 +28,39 @@ Teams should describe in detail, without fail, each component used and the amoun
 
 </p>
 
+<h4>Task and Evaluation Metrics</h4>
+<p>
+The task of the challenge is to discover novel objects in a large corpus of unlabeled images using knowledge about known objects. Specifically, given a labeled dataset with K known
+objects and a large unlabeled dataset consisting of U (not known a-priori) unknown objects,  algorithms should output a set of M (not known a-priori) clusters, each of which contains
+regions belonging to an object class. Additionally, an object detector should be trained for each cluster whose performance is evaluated on a held-out set to assess the real world
+applicability of the object discovery system.</p>
+<p>
+The primary evaluation metric is the Area under the curve of Purity coverage plotsand PA SCAL VOC style mean Average Precision at an IoU threshold of 0.50. Additionally we also
+    report the number of clusters, number of objects discovered, Correct Localization. </p>
+
+
 <h4>Dataset</h4>
-<p>We repurpose the excellent <a href="http://www.image-net.org/" target="_blank">ImageNet</a> database to construct the dataset used in this challenge. To note, a database does not likely include an exhaustive set of data that fully spans the data space (otherwise we wouldn't have any open-world issues). As a result, any sets of open-set examples will be sparsely sampled or biased. Given the current ImageNet database, we assume that ImageNet data spans the data space well. We sample data from ImageNet to prepare both the closed-set and open-set. Again, we refer participants to the <a href="https://docs.google.com/document/d/19kfy77P6ahWRmDKq27hz_MxfJOTEe-d3cQkODGn8bVE/edit?usp=sharing" target="_blank">user guide</a> for dataset details</p>
+All systems submitted to the challenge are allowed to use three datasets, namely ImageNet 2012, PASCAL VOC 2007 and COCO 2014 datasets. See respective websites for the dataset formats.
 
 <p>
-To note, the full ImageNet database is ~1.2TB (not the ImageNet-1K version). We acknowledge the difficulty in downloading this database. Therefore, we prepare a manageable dataset which is ~50GB. To use our dataset, we ask participants to accept the Term of Access by filling in this <a href="https://forms.gle/kdPUC3LorXzcWhZA7" target="_blank">google form</a> that collects participants' names and emails. We will send the dataset link to verified users.
-</p>
+<strong>Labeled dataset:</strong> The object detection dataset, PASCAL VOC 2007 split is considered as the labeled dataset for this challenge. Teams can use the region level labels to
+    train object detection models for their submissions. We assume the 20 categories of PASCAL-VOC as the known categories.</p>
+<p><strong>Discovery Set:</strong> The COCO 2014 train set,  without any labels, is used as the discovery dataset. The remaining categories, not common with PASCAL-VOC, are considered
+the novel categories. Teams are encouraged not to assume the number of novel categories to be known a-priori.</p>
+<p><strong>Pre-training dataset:</strong> To train object detection datasets, ImageNet pre-training is a standard practice. Teams can leverage self-supervised or supervised learning to
+obtain weights for initialization. However, only the results using self-supervised learning will be considered for ranking.</p>
+<p><strong>Evaluation set:</strong> All systems will be evaluated on the discovery performance and object detection performance. For object discovery, results are reported on the COCO
+2014 train set. For object detection on the 20 known classes and the newly discovered objects, results will be reported on the COCO minival set.</p>
+
+
+<h4>Output Format</h4>
+<p>
+All teams are required to return two csv files for evaluating object discovery and object detection performance. For object discovery, evaluated on COCO 2014 train split,
+the file format should be as follows.</p>
+&lt image_id &gt, &ltx1&gt,&lty1&gt,&ltx2&gt,&lty2&gt,&ltcluster_id&gt
+<p>Here &ltimage_id&gt is the unique identifier of an image as used in COCO 2014 train set.</p>
+For object detection, evaluated on COCO minival, the file format is as follows.
+&ltimage_id&gt, &ltx1&gt,&lty1&gt,&ltx2&gt,&lty2&gt,&ltcluster_id&gt,&ltconf_score&gt
 
 
 <h4>Contact Information</h4>
@@ -38,10 +69,11 @@ Organizers: Anubhav (UMD), Pulkit Kumar (UMD), Saketh Rambhatla (UMD) , Abhinav 
 </p>
 
 <p>
-For questions regarding technical details, feel free to submit issues on our <a href="">github repo</a>. If you have high-level questions, please contact Anubhav (anubhav@umd.edu).
+For questions regarding technical details, feel free to submit issues on our <a href="https://github.com/learn2phoenix/cvpr22_vplow_ow">github repo</a>. If you have high-level questions, please contact Anubhav (anubhav@umd.edu)
+    and/or Pulkit (pulkit@umd.edu)
 </p>
 
 <h4>Acknowledgement</h4>
-This challenge is supported by the <a href="">CMU Argo AI Center for Autonomous Vehicle Research</a> and the DARPA SAIL-ON project. Any opinions, findings, and conclusions or
+This challenge is supported by the DARPA SAIL-ON project. Any opinions, findings, and conclusions or
 recommendations expressed in this material are those of the authors and do not necessarily reflect the views of funding agents and sponsors.
 
