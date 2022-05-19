@@ -1,3 +1,47 @@
-<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+<p><a href="https://rssaketh.github.io/project_pages/obj_disc_new.html#workshop_challenge" target="_blank">Open World Vision</a> emphasizes the complexity of the real open world where we finally deploy computer vision algorithms. This year, to facilitate discussions among researchers from different backgrounds, we host a teaser challenge in the context of image classification, which studies a classifier’s robustness to novel inputs and self-awareness of unknowns. We refer participants to the <a href="https://docs.google.com/document/d/19kfy77P6ahWRmDKq27hz_MxfJOTEe-d3cQkODGn8bVE/edit?usp=sharing" target="_blank">user guide</a> for details</p>.
 
-<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+<h4>Important Dates</h4>
+<ul>
+<li>Apr 29, 2022, Challenge announced</li>
+<li>May 23, 2022, EvalAI open for submissions</li>
+<li>June 10, 2022, Challenge will be closed</li>
+<li>June 15, 2022, Results will be releases and participants will be invited for presentation</li>
+<li>June 20, 2022, Workshop@CVPR,22</li>
+</ul>
+
+<h4>Protocol of Algorithm Design</h4>
+<p> Proposed algorithms for this challenge will operate on widely used object detection datasets, i.e. <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/" target="_blank">PASCAL VOC 2007 </a>
+    and <a href="https://cocodataset.org/" target="_blank"> COCO 2014 </a>, and report results on two splits. </p>
+<p>
+Object discovery systems should be very careful about the assumptions of prior knowledge. To be precise, initializations used by algorithms should never be exposed/trained on categories
+    they wish to discover. This curtails the pre-training of any network on the <a href="https://www.image-net.org/" target="_blank">ImageNet</a> dataset using labeled data. </p>
+
+<p>
+While we do not discourage teams from using weights of networks trained on ImageNet using labels, only weights trained using self-supervision will be considered for ranking on the
+leaderboard. While there is no restriction on the usage of models, teams should compare the model performance to a standard  ResNet-50 network trained using
+    <a href="https://github.com/facebookresearch/dino" target="_blank">DINO algorithm. </a>
+Teams should describe in detail, without fail, each component used and the amount of improvement they offer.
+
+</p>
+
+<h4>Dataset</h4>
+<p>We repurpose the excellent <a href="http://www.image-net.org/" target="_blank">ImageNet</a> database to construct the dataset used in this challenge. To note, a database does not likely include an exhaustive set of data that fully spans the data space (otherwise we wouldn't have any open-world issues). As a result, any sets of open-set examples will be sparsely sampled or biased. Given the current ImageNet database, we assume that ImageNet data spans the data space well. We sample data from ImageNet to prepare both the closed-set and open-set. Again, we refer participants to the <a href="https://docs.google.com/document/d/19kfy77P6ahWRmDKq27hz_MxfJOTEe-d3cQkODGn8bVE/edit?usp=sharing" target="_blank">user guide</a> for dataset details</p>
+
+<p>
+To note, the full ImageNet database is ~1.2TB (not the ImageNet-1K version). We acknowledge the difficulty in downloading this database. Therefore, we prepare a manageable dataset which is ~50GB. To use our dataset, we ask participants to accept the Term of Access by filling in this <a href="https://forms.gle/kdPUC3LorXzcWhZA7" target="_blank">google form</a> that collects participants' names and emails. We will send the dataset link to verified users.
+</p>
+
+
+<h4>Contact Information</h4>
+<p>
+Organizers: Anubhav (UMD), Pulkit Kumar (UMD), Saketh Rambhatla (UMD) , Abhinav Shrivastava (UMD)
+</p>
+
+<p>
+For questions regarding technical details, feel free to submit issues on our <a href="">github repo</a>. If you have high-level questions, please contact Anubhav (anubhav@umd.edu).
+</p>
+
+<h4>Acknowledgement</h4>
+This challenge is supported by the <a href="">CMU Argo AI Center for Autonomous Vehicle Research</a> and the DARPA SAIL-ON project. Any opinions, findings, and conclusions or
+recommendations expressed in this material are those of the authors and do not necessarily reflect the views of funding agents and sponsors.
+
