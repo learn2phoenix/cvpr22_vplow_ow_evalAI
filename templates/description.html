@@ -35,7 +35,7 @@ objects and a large unlabeled dataset consisting of U (not known a-priori) unkno
 regions belonging to an object class. Additionally, an object detector should be trained for each cluster whose performance is evaluated on a held-out set to assess the real world
 applicability of the object discovery system.</p>
 <p>
-The primary evaluation metric is the Area under the curve of Purity coverage plotsand PA SCAL VOC style mean Average Precision at an IoU threshold of 0.50. Additionally we also
+The primary evaluation metric is the Area under the curve of Purity coverage plotsand PASCAL VOC style mean Average Precision at an IoU threshold of 0.50. Additionally we also
     report the number of clusters, number of objects discovered, Correct Localization. </p>
 
 
@@ -52,15 +52,6 @@ obtain weights for initialization. However, only the results using self-supervis
 <p><strong>Evaluation set:</strong> All systems will be evaluated on the discovery performance and object detection performance. For object discovery, results are reported on the COCO
 2014 train set. For object detection on the 20 known classes and the newly discovered objects, results will be reported on the COCO minival set.</p>
 
-
-<h4>Output Format</h4>
-<p>
-All teams are required to return two csv files for evaluating object discovery and object detection performance. For object discovery, evaluated on COCO 2014 train split,
-the file format should be as follows.</p>
-&lt image_id &gt, &ltx1&gt,&lty1&gt,&ltx2&gt,&lty2&gt,&ltcluster_id&gt
-<p>Here &ltimage_id&gt is the unique identifier of an image as used in COCO 2014 train set.</p>
-For object detection, evaluated on COCO minival, the file format is as follows.
-&ltimage_id&gt, &ltx1&gt,&lty1&gt,&ltx2&gt,&lty2&gt,&ltcluster_id&gt,&ltconf_score&gt
 
 
 <h4>Contact Information</h4>

@@ -1,1 +1,9 @@
-<p>Submit any blank file here to see a random number generated for your submission. If you get lucky, you might reach the top of the leaderboard.</p>
+<p>We ask participants to upload a zip file that contains the following 2 files:
+<li><strong>discovery.csv</strong>: This should contain results on COCO 2014 train split in the following format - &lt image_id &gt, &ltx1&gt,&lty1&gt,&ltx2&gt,&lty2&gt,&ltcluster_id&gt </li>
+<li><strong>detection.csv</strong>: This should contain results on COCO minival in the following format - &ltimage_id&gt, &ltx1&gt,&lty1&gt,&ltx2&gt,&lty2&gt,&ltcluster_id&gt,&ltconf_score&gt</li>
+
+<p>Here &ltimage_id&gt is the unique identifier of an image as used in COCO 2014 train set.</p>
+<p></p>
+ <p>We further include  code in our
+    <a href="https://github.com/learn2phoenix/cvpr22_vplow_ow">github repo</a> that generates these csv files and evaluates the results.
+</p>
