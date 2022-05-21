@@ -11,8 +11,8 @@ leaderboard_description: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 evaluation_script: evaluation_script.zip
 remote_evaluation: False
 is_docker_based: False
-start_date: 2019-01-01 00:00:00
-end_date: 2099-05-31 23:59:59
+start_date: 2022-05-10 00:00:00
+end_date: 2022-06-20 23:59:59
 published: True
 
 leaderboard:
@@ -40,9 +40,9 @@ challenge_phases:
     leaderboard_public: False
     is_public: True
     is_submission_public: True
-    start_date: 2019-01-19 00:00:00
-    end_date: 2099-04-25 23:59:59
-    test_annotation_file: annotations/test_annotations_devsplit.json
+    start_date: 2022-05-10 00:00:00
+    end_date: 2022-06-20 23:59:59
+    test_annotation_file: annotations/test_annotation.zip
     codename: dev
     max_submissions_per_day: 5
     max_submissions_per_month: 50
@@ -82,8 +82,7 @@ challenge_phases:
     leaderboard_public: True
     is_public: True
     is_submission_public: True
-    start_date: 2019-01-01 00:00:00
-    end_date: 2099-05-24 23:59:59
+    start_date: 2022-05-10 00:00:00
     test_annotation_file: annotations/test_annotations_testsplit.json
     codename: test
     max_submissions_per_day: 5
