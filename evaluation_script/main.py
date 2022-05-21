@@ -1,3 +1,4 @@
+import bz2
 import json
 import os
 import random
@@ -9,6 +10,12 @@ import numpy as np
 import pandas as pd
 
 from .discovery_eval import eval_discovery_metrics
+
+
+def read_bz2_json(filename):
+    data = bz2.BZ2File(filename, 'rb').read()
+    my_json = data.decode('utf8').replace("'", '"')
+    return json.loads(my_json)
 
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
@@ -59,6 +66,16 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         user_dir = f'/tmp/{user_id}'
         os.makedirs(user_dir)  # This should never exist (ok, ideally :))
 
+        # Extracting GT files
+        with zipfile.ZipFile(test_annotation_file) as zip_ref:
+            zip_ref.extractall(user_dir)
+        gt_disc_file = f'{user_dir}/instances_train2014.json.bz2'
+        gt_det_file = f'{user_dir}/instances_coco_minival.json.bz2'
+
+        gt_data = read_bz2_json(gt_disc_file)
+        gt_det_file = read_bz2_json(gt_det_file)
+
+
         # Extracting the user submission to this folder
         with zipfile.ZipFile(user_submission_file) as zip_ref:
             zip_ref.extractall(user_dir)
@@ -76,14 +93,10 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
         disc_exp_cols = {'image_id', 'x1', 'y1', 'x2', 'y2', 'cluster_id'}
         assert disc_exp_cols == set(discovery_data.columns)
         # Proceeding with discovery evaluation
-        # Reading the gt file. TODO: Figure out if we can supply this precomputed. No point every worker redoing this.
-        #                            My hunch is that we should be able to supply a pkl file as GT annotation file
         gt_dump = defaultdict(list)
-        with open(test_annotation_file, 'rb') as f:
-            gt = json.load(f)
 
         gt_class_mapping = {elem['id']: idx + 1 for idx, elem in enumerate(gt['categories'])}
-        for anno in gt['annotations']:
+        for anno in gt_disc_file['annotations']:
             cur_box = anno['bbox']
             # box is in xywh format
             cur_box[2] += cur_box[0]
