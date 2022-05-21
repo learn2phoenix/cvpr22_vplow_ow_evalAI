@@ -8,7 +8,7 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 
-from discovery_eval import eval_discovery_metrics
+from .discovery_eval import eval_discovery_metrics
 
 
 def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwargs):
