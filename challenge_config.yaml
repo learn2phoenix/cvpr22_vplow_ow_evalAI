@@ -66,6 +66,45 @@ challenge_phases:
     is_restricted_to_select_one_submission: False
     is_partial_submission_evaluation_enabled: False
     allowed_submission_file_types: ".zip"
+  - id: 2
+    name: Test Phase
+    description: templates/challenge_phase_1_description.html
+    leaderboard_public: False
+    is_public: True
+    is_submission_public: True
+    start_date: 2022-05-10 00:00:00
+    end_date: 2022-06-20 23:59:59
+    test_annotation_file: annotations/test_annotation.zip
+    codename: dev
+    max_submissions_per_day: 99
+    max_submissions_per_month: 99
+    max_submissions: 99
+    submission_meta_attributes:
+      - name: Method name
+        description: give your method a cool name
+        type: text
+        is_visible: True
+        required: True
+      - name: Did you use external data?
+        description: No, or a description of the external data
+        type: text
+        required: True
+      - name: Pretraining
+        description: No, or a description of the pretraining method
+        type: text
+        required: True
+    default_submission_meta_attributes:
+      - name: method_name
+        is_visible: False
+      - name: method_description
+        is_visible: True
+      - name: project_url
+        is_visible: True
+      - name: publication_url
+        is_visible: True
+    is_restricted_to_select_one_submission: False
+    is_partial_submission_evaluation_enabled: False
+    allowed_submission_file_types: ".zip"
 
 dataset_splits:
   - id: 1
@@ -82,3 +121,10 @@ challenge_phase_splits:
     visibility: 3
     leaderboard_decimal_precision: 4
     is_leaderboard_order_descending: True
+  - challenge_phase_id: 2
+      leaderboard_id: 1
+      dataset_split_id: 1
+      visibility: 3
+      leaderboard_decimal_precision: 4
+      is_leaderboard_order_descending: True
+
