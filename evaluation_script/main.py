@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 
 from .discovery_eval import eval_discovery_metrics
+from .detection_eval import eval_detection_metrics
 
 
 def read_bz2_json(filename):
@@ -74,6 +75,8 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
 
         gt_data = read_bz2_json(gt_disc_file)
         gt_det_file = read_bz2_json(gt_det_file)
+        gt_det_file_json_path = f'{user_dir}/instances_coco_minival.json'
+        json.dump(gt_det_file, open(gt_det_file_json_path,'r'))
 
 
         # Extracting the user submission to this folder
@@ -128,6 +131,11 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
 
         # TODO: Do detection eval
 
+        detection_result = eval_detection_metrics(det_csv_file=f'{user_dir}/detection.csv',
+                                                 gt_file =gt_det_file_json_path, 
+                                                 mapping_needed = True, 
+                                                 disc_results = discovery_result)
+
         output["result"] = [
             {
                 "train_split": {
@@ -147,6 +155,9 @@ def evaluate(test_annotation_file, user_submission_file, phase_codename, **kwarg
                     "disc_known_auc": discovery_result['known_auc'],
                     "disc_known_cum_pur": discovery_result['known_cum_pur'],
                     "disc_known_cum_cov": discovery_result['known_cum_cov'],
+                    "det_map_@IoU=0.50:0.95": detection_result[0],
+                    "det_map_@IoU=0.50": detection_result[1]
+
                 }
             }
         ]
